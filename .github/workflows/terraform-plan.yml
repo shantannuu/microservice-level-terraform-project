@@ -1,0 +1,49 @@
+name: Terraform plan
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  plan:
+    runs-on: ubuntu-latest
+
+    # strategy:
+    #   matrix:
+    #     env: [dev, staging, prod]
+
+    defaults:
+      run:
+        working-directory: live/dev/network/vpc
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v5
+
+    - name: Set up Terraform
+      uses: hashicorp/setup-terraform@v3
+
+    - name: Configure AWS credentials
+      uses: aws-actions/configure-aws-credentials@v2
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: ap-south-1
+
+    - name: Terraform Init
+      run: terraform init
+
+    - name: Terraform format
+      run: terraform fmt -check
+
+    - name: Terraform Validate
+      run: terraform validate
+
+    - name: Terraform Plan
+      run: terraform plan -out=tfplan
+
+    - name: Upload Terraform Plan
+      uses: actions/upload-artifact@v4
+      with:
+        name: tfplan-dev
+        path: live/dev/network/vpc/tfplan
