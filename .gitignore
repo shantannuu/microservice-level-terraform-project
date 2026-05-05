@@ -1,0 +1,97 @@
+# -----------------------------
+
+# Terraform Core Files
+
+# -----------------------------
+
+.terraform/
+*.tfstate
+*.tfstate.*
+crash.log
+
+# -----------------------------
+
+# Terraform Lock File (KEEP IT)
+
+# -----------------------------
+
+# DO NOT ignore this in production
+
+# It ensures provider version consistency
+
+!.terraform.lock.hcl
+
+# -----------------------------
+
+# Variable Files (Sensitive)
+
+# -----------------------------
+
+*.tfvars
+*.tfvars.json
+
+# If you want to commit example configs:
+
+!*.tfvars.example
+
+# -----------------------------
+
+# CLI Config / Credentials
+
+# -----------------------------
+
+.terraformrc
+terraform.rc
+
+# -----------------------------
+
+# Sensitive files
+
+# -----------------------------
+
+*.pem
+*.key
+*.pub
+
+# -----------------------------
+
+# OS / Editor junk
+
+# -----------------------------
+
+.DS_Store
+Thumbs.db
+
+# -----------------------------
+
+# Logs
+
+# -----------------------------
+
+*.log
+
+# -----------------------------
+
+# IDEs
+
+# -----------------------------
+
+.vscode/
+.idea/
+
+# -----------------------------
+
+# Python (if used in scripts)
+
+# -----------------------------
+
+**pycache**/
+*.pyc
+
+# -----------------------------
+
+# Node (if frontend/scripts)
+
+# -----------------------------
+
+node_modules/
