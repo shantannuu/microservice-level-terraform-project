@@ -39,8 +39,6 @@ jobs:
     - name: Terraform Plan
       run: terraform plan -out=tfplan
 
-    - name: Upload Terraform Plan
-      uses: actions/upload-artifact@v4
-      with:
-        name: tfplan-dev
-        path: live/dev/network/vpc/tfplan
+    - name: Upload Terraform Plan to s3
+      run: |
+        aws s3 cp tfplan s3://my-terraform-plans-bucket-shantanu/dev/tfplan
