@@ -34,9 +34,8 @@ jobs:
       run: terraform init
 
     - name: Download Terraform Plan
-      uses: actions/download-artifact@v4
-      with:
-        name: tfplan-dev
+      run : |
+        aws s3 cp s3://my-terraform-plans-bucket-shantanu/dev/tfplan tfplan
 
     - name: Terraform Apply
       run: terraform apply -auto-approve tfplan
