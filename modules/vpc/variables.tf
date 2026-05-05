@@ -1,5 +1,4 @@
 variable "cidr_block" {
-  description = "VPC CIDR"
 }
 
 variable "env" {
